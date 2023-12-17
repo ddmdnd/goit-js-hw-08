@@ -56,6 +56,6 @@ margin: 0 auto;
 .gallery img:focus,
 .gallery img:hover
  {
-  transform: scale(1.2);
+  transform: scale(1.04);
   outline: none; 
 }
