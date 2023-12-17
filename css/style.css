@@ -50,3 +50,12 @@ margin: 0 auto;
   height: 100%;
   object-fit: cover;
 }
+.gallery img { 
+  transition: transform 0.3s ease-in-out;
+}
+.gallery img:focus,
+.gallery img:hover
+ {
+  transform: scale(1.2);
+  outline: none; 
+}

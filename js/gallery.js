@@ -81,40 +81,19 @@ return html + `<li class="gallery-item">
 gallery.innerHTML = imageGallery;
 gallery.addEventListener("click", event => {
   event.preventDefault();
-if(event.target.dataset.source){
+  const targetItem = event.target.dataset.source;
+if(targetItem){
   const instance = basicLightbox.create(
-    `<img src="${event.target.dataset.source}" width="800" height="600">
+    `<img src="${targetItem}" width="800" height="600">
 `)
 instance.show()
-const visible = instance.visible();
-if(visible){
-  gallery.addEventListener ("keydown", evt =>{
-    if(evt.code === 'Escape'){
+
+//  використав window.addEventListener, а не gallery.addEventListener тому, що в safary не працює, не бачить фокусу
+
+window.addEventListener ("keydown", evt =>{
+    if(evt.code === 'Escape'|| event.key === 'Escape' || event.keyCode === 27){
       instance.close()}
   }
-  
   )
-}
   }
-  
-// console.log(event.target.stopPropagation);
-
-// if (event.target.dataset.source) {instance.show(
-// )
-// }
-// const visible = instance.visible();
-// if(visible) {
-
-//   // const modal = document.querySelector(instance);
-//   // console.log(modal)
-//   instance.addEventListener("keydown", event => {
-// console.log(event)
-// //  if(event.code === 'Escape'){
-// //   instance.close()
-// //  }
-//  })
-//  }
-
-// event.stopPropagation()
-  // console.log(event.target.dataset.source)
 })
