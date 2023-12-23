@@ -64,7 +64,6 @@ const images = [
   },
 ];
 // preventDefault();
-const [{preview, original, description}] = images;
 const gallery = document.querySelector(".gallery")
 const imageGallery = images.reduce((html, image) => {
 return html + `<li class="gallery-item">
@@ -79,20 +78,21 @@ return html + `<li class="gallery-item">
 </li>`;
 },"");
 gallery.innerHTML = imageGallery;
+let instance;
 gallery.addEventListener("click", event => {
   event.preventDefault();
   const targetItem = event.target.dataset.source;
 if(targetItem){
   const modalImage = `<img src="${targetItem}" width="800" height="600">
   `;
-  const instance = basicLightbox.create(
+  const closeWithEsc = (evt) =>{
+    if(evt.key === "Escape"){
+      instance.close()
+    }
+  }
+  instance = basicLightbox.create(
     modalImage , {
       onShow: (instance) => {
-        const closeWithEsc = (evt) =>{
-          if(evt.code === "Escape"|| event.key === "Escape" || event.keyCode === 27){
-            instance.close()
-          }
-        }
         window.addEventListener ("keydown", closeWithEsc);
         instance.closeWithEsc = closeWithEsc;
       },
@@ -102,7 +102,6 @@ if(targetItem){
     }
     )
     instance.show()
-    
   }
   
 
